@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Styled Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    .form-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #4CAF50;
+    }
+
+    label {
+      font-weight: normal;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input:focus {
+      border-color: #4CAF50;
+    }
+
+    .highlight {
+      background-color: #ffeb3b;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Form Submission</h2>
+    <form id="userForm">
+      <label for="name" id="nameLabel">Name:</label>
+      <input type="text" id="name" name="name" required><br>
+
+      <label for="email" id="emailLabel">Email:</label>
+      <input type="email" id="email" name="email" required><br>
+
+      <label for="age" id="ageLabel">Age:</label>
+      <input type="number" id="age" name="age"><br>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('userForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Get form elements
+      const name = document.getElementById('name');
+      const email = document.getElementById('email');
+      const age = document.getElementById('age');
+      const nameLabel = document.getElementById('nameLabel');
+      const emailLabel = document.getElementById('emailLabel');
+      const ageLabel = document.getElementById('ageLabel');
+
+      // Clear previous highlights
+      name.classList.remove('highlight');
+      email.classList.remove('highlight');
+      age.classList.remove('highlight');
+      nameLabel.style.fontWeight = 'normal';
+      emailLabel.style.fontWeight = 'normal';
+      ageLabel.style.fontWeight = 'normal';
+
+      // Check for empty required fields
+      if (!name.value) {
+        name.classList.add('highlight');
+        nameLabel.style.fontWeight = 'bold';
+      }
+      if (!email.value) {
+        email.classList.add('highlight');
+        emailLabel.style.fontWeight = 'bold';
+      }
+      
+      // Highlight age field if it's empty (optional as it's not mandatory)
+      if (!age.value && age.required) {
+        age.classList.add('highlight');
+        ageLabel.style.fontWeight = 'bold';
+      }
+
+      // Styling the heading and form on button click
+      document.querySelector('h2').style.color = '#ff5722'; // Change heading color
+      document.querySelector('.form-container').style.border = '2px solid #4CAF50'; // Change form border color
+
+    });
+  </script>
+
+</body>
+</html>
